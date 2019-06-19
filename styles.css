@@ -1,0 +1,169 @@
+:root {
+    --finger-size: 40px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.slider {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider .indicators {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider .indicators .indicator {
+    width: var(--finger-size);
+    height: var(--finger-size);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(100, 100, 100, 0.4);
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 0.6rem;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+}
+
+.slider .indicators .indicator:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.slider .indicators .indicator.click {
+    transition: 0.1s;
+    transform: scale(.8) translate(-50%, -50%);
+    transform-origin: center center;
+}
+
+.slider .indicators .left {
+    top: 50%;
+    left: 5%;
+    z-index: 1;
+}
+
+.slider .indicators .right::after, .slider .indicators .left::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.slider .indicators .left::before {
+    background-image: url("chevron-left-solid.svg");
+}
+
+.slider .indicators .right {
+    top: 50%;
+    right: 5%;
+    z-index: 1;
+}
+
+.slider .indicators .right::after {
+    background-image: url("chevron-right-solid.svg");
+}
+
+.slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.slider .slide img {
+    width: 100%;
+}
+
+.slider .slide .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    box-sizing: border-box;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .slide.active {
+    visibility: visible;
+}
+
+.slide-come-from-right {
+    animation: slide-come-from-right 1s ease-out;
+}
+
+.slide-come-from-left {
+    animation: slide-come-from-left 1s ease-out;
+}
+
+.slide-go-to-left {
+    animation: slide-go-to-left 1s ease-out;
+}
+
+.slide-go-to-right {
+    animation: slide-go-to-right 1s ease-out;
+}
+
+@keyframes slide-come-from-right {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-come-from-left {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-go-to-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-go-to-right {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.content {
+    height: 100vh;
+}
