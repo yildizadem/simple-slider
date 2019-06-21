@@ -22,6 +22,7 @@ class Slider {
         this.activeIndex = 0;
         this.length = this.slides.length;
         this.isActive = false;
+        this.duration = 1000;
     }
     nextSlide() {
         this.isActive = true;
@@ -36,7 +37,7 @@ class Slider {
                 this[`slide0`].removeClass("slide-come-from-right");
             this.activeIndex = this[`slide${this.activeIndex+1}`] ? this.activeIndex + 1 : 0;
             this.isActive = false;
-        }, 1000);
+        }, this.duration);
     }
     previousSlide() {
         this.isActive = true;
@@ -51,7 +52,7 @@ class Slider {
                 this[`slide${this.length-1}`].removeClass("slide-come-from-left");
             this.activeIndex = this[`slide${this.activeIndex-1}`] ? this.activeIndex - 1 : this.length - 1;
             this.isActive = false;
-        }, 1000);
+        }, this.duration);
     }
 }
 var slider = new Slider();
